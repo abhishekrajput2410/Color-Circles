@@ -14,6 +14,7 @@ document.body.addEventListener('click', function(e) {
     circles.push(circle);
     redoStack.length = 0;
     updateRedoButton();
+    updateCounter(); 
 });
 
 function getRandomColor() {
@@ -25,6 +26,7 @@ function reset() {
     circles.length = 0;
     redoStack.length = 0;
     updateRedoButton();
+    updateCounter(); 
 }
 
 function undo() {
@@ -33,6 +35,7 @@ function undo() {
     redoStack.push(lastCircle);
     lastCircle.remove();
     updateRedoButton();
+    updateCounter();
 }
 
 function redo() {
@@ -41,8 +44,14 @@ function redo() {
     document.body.appendChild(circle);
     circles.push(circle);
     updateRedoButton();
+    updateCounter(); 
 }
 
 function updateRedoButton() {
     document.getElementById('redoBtn').disabled = redoStack.length === 0;
+}
+
+
+function updateCounter() {
+    document.getElementById('counter').textContent = `Circles: ${circles.length}`;
 }
